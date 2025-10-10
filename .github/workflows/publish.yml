@@ -3,7 +3,7 @@ name: Publish to PyPI
 on:
   push:
     branches:
-      - pypi 
+      - pypi
 
 jobs:
   build-and-publish:
@@ -15,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.12"  # Match your project Python version
+          python-version: "3.12"
 
       - name: Install build tools
         run: |
@@ -27,7 +27,5 @@ jobs:
           python -m build
 
       - name: Publish to PyPI
-        uses: pypa/gh-action-pypi-publish@v1.6.0
-        with:
-          user: __token__  # Always use API token
-          password: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          python -m twine upload dist/* -u __token__ -p ${{ secrets.PYPI_API_TOKEN }}
