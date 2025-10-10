@@ -22,5 +22,4 @@ test_env/
 # distros and pypi stuff
 talkieCLI.egg-info
 dist
-pyproject.toml
 .gitignore
