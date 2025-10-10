@@ -1,5 +1,5 @@
 import asyncio
-from modules.connection_handler import handle_client
+from chatcli.modules.connection_handler import handle_client
 
 # --- Configuration and State ---
 HOST = "127.0.0.1"
@@ -8,7 +8,7 @@ PORT = 65431
 client_list = {} 
 # client_list: {writer_object: username_string}
 
-async def main():
+async def start_server():
     """
     Main function to start the asyncio server.
     """
@@ -21,8 +21,12 @@ async def main():
     async with server:
         await server.serve_forever()
 
-if __name__ == "__main__":
+def main():  
     try:
-        asyncio.run(main())
+        asyncio.run(start_server())
     except KeyboardInterrupt:
         print("\nServer shutting down.")
+
+
+if __name__ == "__main__":
+    main()

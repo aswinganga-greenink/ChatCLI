@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+modules/__pycache__/
 *.py[cod]
 *.pyo
 *.pyd
@@ -8,6 +9,7 @@ __pycache__/
 venv/
 .env/
 .venv/
+test_env/
 
 # IDE
 .vscode/
@@ -16,3 +18,9 @@ venv/
 # macOS/Linux
 .DS_Store
 *.swp
+
+# distros and pypi stuff
+talkieCLI.egg-info
+dist
+pyproject.toml
+.gitignore

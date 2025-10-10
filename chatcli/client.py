@@ -39,48 +39,8 @@ async def tcp_client():
     writer.close()
     await writer.wait_closed()
 
-asyncio.run(tcp_client())
+def main():  # synchronous entry point for pyproject.toml
+    asyncio.run(tcp_client())
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# HOST = "127.0.0.1"  # The server's hostname or IP address
-# PORT = 65431  # The port used by the server
-
-# with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-#     s.connect((HOST, PORT))
-#     print("login with username \n")
-#     user_name = input()
-#     print("ready to chat!\n")
-#     exit_sign = 0
-#     while exit_sign == 0:
-#         # print("ready to chat!\n")
-#         # print("Client : ")
-#         msg = input()
-#         msg_dict = {"message":msg, "user":user_name, "type":"text message"}
-#         # print(msg_dict["user"] + " : " + msg_dict["message"])
-#         if msg == "/exit":
-#             break
-#         response = json.dumps(msg_dict)
-#         s.sendall(response.encode())
-
-# print(f"Received {"exited"!r}")
+if __name__ == "__main__":
+    main()
