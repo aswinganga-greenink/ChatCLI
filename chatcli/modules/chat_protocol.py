@@ -1,6 +1,13 @@
 import json
 
+# -- color giving pkgs --
+
+import colorama
+from colorama import Fore, Back, Style, init
+
 HOST_SERVER_NAME = "server"
+
+init(autoreset=True)
 
 def decode_message(data: bytes) -> dict:
     """Decodes raw bytes into a Python dictionary message."""
@@ -18,7 +25,8 @@ def handle_incoming_message(
     msg: dict, 
     writer, 
     client_list: dict, 
-    username: str
+    username: str,
+    color: str
 ) -> tuple[bool, dict | list[tuple]]:
     """
     Processes a decoded message, handling commands or preparing for broadcast.
@@ -27,6 +35,8 @@ def handle_incoming_message(
         (should_exit: bool, response: dict or broadcast_list: list[tuple])
     """
     message_text = msg.get("message", "")
+
+    chat_color = getattr(Fore, color.upper())
     
     if message_text == "/exit":
         return True, {}
@@ -39,7 +49,7 @@ def handle_incoming_message(
         return False, reply 
 
     # Default: Message to be broadcast
-    print(username, " : ", message_text)
+    print(chat_color + username, " : ", message_text)
     broadcast_list = []
     
     # Prepare list of (writer, encoded_message) for broadcasting
