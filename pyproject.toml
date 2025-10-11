@@ -1,6 +1,6 @@
 [project]
 name = "talkieCLI"
-version = "0.1.1"
+version = "0.1.2"
 description = "A command-line collaborative chat and live code editing tool"
 readme = "README.md"
 authors = [
