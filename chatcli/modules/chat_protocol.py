@@ -17,9 +17,9 @@ def encode_message(msg_dict: dict) -> bytes:
     """Encodes a Python dictionary message into raw bytes."""
     return json.dumps(msg_dict).encode()
 
-def create_server_message(message_text: str) -> dict:
+def create_server_message(color, message_text: str) -> dict:
     """Helper to create a standard server message."""
-    return {"user": HOST_SERVER_NAME, "message": message_text}
+    return {"user": HOST_SERVER_NAME, "message": message_text, "color" : color}
 
 def handle_incoming_message(
     msg: dict, 
@@ -43,10 +43,15 @@ def handle_incoming_message(
 
     if message_text == "/list":
         # Command for a single client response
-        user_list = ". ".join(client_list.values())
-        reply = create_server_message(f"Online: {user_list}")
+        user_list = ", ".join(client_list.values())
+        reply = create_server_message(color, f"Online: {user_list}")
+        print(username + " made a request to list online users")
+        # print(reply)
         # Return a single response dict
         return False, reply 
+    
+    if message_text == "/ban":
+        pass
 
     # Default: Message to be broadcast
     print(chat_color + username, " : ", message_text)
